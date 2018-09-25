@@ -21,7 +21,9 @@
 class wowza (
   $wowzakey,
   $enable               = $wowza::params::enable,
+  $enable_manager       = $wowza::params::enable_manager,
   $java_heap_size       = $wowza::params::java_heap_size,
+  $java_pkg             = $wowza::params::java_pkg,
   $wowza_pkg            = $wowza::params::wowza_pkg,
   $wowza_pkg_version    = $wowza::params::wowza_pkg_version,
   $loadtest_ensure      = $wowza::params::loadtest_ensure,
