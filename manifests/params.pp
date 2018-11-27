@@ -4,6 +4,14 @@
 #
 # === Parameters:
 #
+# [*admin_password*]
+#  Admin password used for the Web UI
+#  Defaults to 'admin'
+#
+# [*admin_user*]
+#  Admin user for the Web UI
+#  Defaults to 'admin'
+#
 # [*installdir*]
 #  Location to which the streaming engine is installed, the default here is what
 #  is used by the default wowza installer.
@@ -35,6 +43,8 @@
 #
 
 class wowza::params {
+  $admin_password       = 'admin'
+  $admin_user           = 'admin'
   $installdir           = '/usr/local/WowzaStreamingEngine'
   $java_heap_size       = '${com.wowza.wms.TuningHeapSizeProduction}'
   $wowza_pkg_version    = '4.0.0'
