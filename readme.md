@@ -15,6 +15,8 @@ class { 'wowza':
 }
 </code></pre>
 
+**NOTE**: The password for the Admin user defaults to 'admin'; it is strongly recommended to change this to a more secure one.
+
 ### Add Wowza application
 
 This adds a wowza application, defaults all work for a standard live streaming application. You can also use this to define a

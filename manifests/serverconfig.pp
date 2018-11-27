@@ -2,7 +2,10 @@
 #  Class that does the default configuration for the wowzastreamingengine server.
 #
 
-class wowza::serverconfig {
+class wowza::serverconfig(
+  $admin_user     = $wowza::admin_user,
+  $admin_password = $wowza::admin_password,
+) {
 
   file { "${::wowza::installdir}/conf/Server.license":
     content => $::wowza::wowzakey,
@@ -49,6 +52,14 @@ class wowza::serverconfig {
     mode   => '0755',
     owner  => 'root',
     group  => 'root',
+  }
+
+  file { "${::wowza::installdir}/conf/admin.password":
+    ensure  => 'present',
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    content => template('wowza/admin.password.erb'),
   }
 
   #Change log configuration to log statistics in an awstats understandable format

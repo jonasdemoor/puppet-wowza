@@ -20,6 +20,8 @@
 
 class wowza (
   $wowzakey,
+  $admin_password       = $wowza::params::admin_password,
+  $admin_user           = $wowza::params::admin_user,
   $enable               = $wowza::params::enable,
   $enable_manager       = $wowza::params::enable_manager,
   $java_heap_size       = $wowza::params::java_heap_size,
