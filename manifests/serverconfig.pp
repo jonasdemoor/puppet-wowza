@@ -3,8 +3,13 @@
 #
 
 class wowza::serverconfig(
-  $admin_user     = $wowza::admin_user,
-  $admin_password = $wowza::admin_password,
+  $admin_user            = $wowza::admin_user,
+  $admin_password        = $wowza::admin_password,
+  $enable_ssl            = $wowza::enable_ssl,
+  $ssl_port              = $wowza::ssl_port,
+  $ssl_stream_name       = $wowza::ssl_stream_name,
+  $ssl_keystore_path     = $wowza::ssl_keystore_path,
+  $ssl_keystore_password = $wowza::ssl_keystore_password,
 ) {
 
   file { "${::wowza::installdir}/conf/Server.license":
@@ -60,6 +65,14 @@ class wowza::serverconfig(
     owner   => 'root',
     group   => 'root',
     content => template('wowza/admin.password.erb'),
+  }
+
+  file { "${::wowza::installdir}/conf/VHost.xml":
+    ensure  => 'present',
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    content => template('wowza/VHost.xml.erb'),
   }
 
   #Change log configuration to log statistics in an awstats understandable format

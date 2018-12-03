@@ -43,19 +43,25 @@
 #
 
 class wowza::params {
-  $admin_password       = 'admin'
-  $admin_user           = 'admin'
-  $installdir           = '/usr/local/WowzaStreamingEngine'
-  $java_heap_size       = '${com.wowza.wms.TuningHeapSizeProduction}'
-  $wowza_pkg_version    = '4.0.0'
+  $admin_password        = 'admin'
+  $admin_user            = 'admin'
+  $installdir            = '/usr/local/WowzaStreamingEngine'
+  $java_heap_size        = '${com.wowza.wms.TuningHeapSizeProduction}'
+  $wowza_pkg_version     = '4.0.0'
   # Start opencast on boot
-  $enable               = true
-  $enable_manager       = true
-  $loadtest_ensure      = absent
-  $loadtest_workercount = '1'
-  $loadtest_streamname  = 'myStream'
-  $loadtest_target      = '127.0.0.1'
-  $configdir            = "${installdir}/conf/"
+  $enable                = true
+  $enable_manager        = true
+  $loadtest_ensure       = absent
+  $loadtest_workercount  = '1'
+  $loadtest_streamname   = 'myStream'
+  $loadtest_target       = '127.0.0.1'
+  $configdir             = "${installdir}/conf/"
+
+  $enable_ssl            = false
+  $ssl_port              = '443'
+  $ssl_stream_name       = 'Default SSL Streaming'
+  $ssl_keystore_path     = '${com.wowza.wms.context.VHostConfigHome}/conf/keystore.jks'
+  $ssl_keystore_password = undef
 
   case $::operatingsystem {
     /(?i:debian)/: {
