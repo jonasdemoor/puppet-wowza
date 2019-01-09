@@ -3,8 +3,11 @@
 #
 
 class wowza::serverconfig(
-  $admin_user     = $wowza::admin_user,
-  $admin_password = $wowza::admin_password,
+  $admin_user           = $wowza::admin_user,
+  $admin_password       = $wowza::admin_password,
+  $enable_logrotation   = $wowza::enable_logrotation,
+  $log_max_file_size    = $wowza::log_max_file_size,
+  $log_max_backup_index = $wowza::log_max_backup_index,
 ) {
 
   file { "${::wowza::installdir}/conf/Server.license":
@@ -70,7 +73,7 @@ class wowza::serverconfig(
     owner   => 'root',
     group   => 'root',
     replace => true,
-    source  => 'puppet:///modules/wowza/log4j.properties',
+    content => template('wowza/log4j.properties.erb'),
     notify  => Class['wowza::service'],
   }
 }
