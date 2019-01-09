@@ -23,6 +23,7 @@ class wowza (
   $admin_password       = $wowza::params::admin_password,
   $admin_user           = $wowza::params::admin_user,
   $enable               = $wowza::params::enable,
+  $enable_logrotation   = $wowza::params::enable_logrotation,
   $enable_manager       = $wowza::params::enable_manager,
   $java_heap_size       = $wowza::params::java_heap_size,
   $java_pkg             = $wowza::params::java_pkg,
@@ -32,6 +33,8 @@ class wowza (
   $loadtest_workercount = $wowza::params::loadtest_workercount,
   $loadtest_streamname  = $wowza::params::loadtest_streamname,
   $loadtest_target      = $wowza::params::loadtest_target,
+  $log_max_file_size    = $wowza::params::log_max_file_size,
+  $log_max_backup_index = $wowza::params::log_max_backup_index,
 ) inherits wowza::params {
   ##
   #This is the main wowza class.

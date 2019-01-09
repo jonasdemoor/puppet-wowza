@@ -50,11 +50,14 @@ class wowza::params {
   $wowza_pkg_version    = '4.0.0'
   # Start opencast on boot
   $enable               = true
+  $enable_logrotation   = false
   $enable_manager       = true
   $loadtest_ensure      = absent
   $loadtest_workercount = '1'
   $loadtest_streamname  = 'myStream'
   $loadtest_target      = '127.0.0.1'
+  $log_max_file_size    = '30M'
+  $log_max_backup_index = '5'
   $configdir            = "${installdir}/conf/"
 
   case $::operatingsystem {
