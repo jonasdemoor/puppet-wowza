@@ -1,3 +1,9 @@
+#
+# log4j.properties - Configures Wowza logging capabilities
+#
+# Managed by Puppet
+#
+
 log4j.rootCategory=INFO, stdout, serverAccess, serverError, serverStats
 
 # The logging context is
@@ -33,6 +39,10 @@ log4j.appender.serverAccess.layout.Fields=date,time,tz,x-event,x-category,x-seve
 log4j.appender.serverAccess.layout.OutputHeader=true
 log4j.appender.serverAccess.layout.QuoteFields=false
 log4j.appender.serverAccess.layout.Delimeter=tab
+<% if @enable_logrotation == true -%>
+log4j.appender.serverAccess.MaxFileSize=<%= @log_max_file_size %>
+log4j.appender.serverAccess.MaxBackupIndex=<%= @log_max_backup_index %>
+<% end -%>
 
 # Access appender (UDP) - uncomment and add to rootCategory list on first line
 #log4j.appender.serverAccessUDP=com.wowza.wms.logging.UDPAppender
@@ -54,6 +64,10 @@ log4j.appender.serverError.layout.OutputHeader=true
 log4j.appender.serverError.layout.QuoteFields=false
 log4j.appender.serverError.layout.Delimeter=tab
 log4j.appender.serverError.Threshold=WARN
+<% if @enable_logrotation == true -%>
+log4j.appender.serverError.MaxFileSize=<%= @log_max_file_size %>
+log4j.appender.serverError.MaxBackupIndex=<%= @log_max_backup_index %>
+<% end -%>
 
 # Statistics appender (to use this appender add "serverStats" to the list of appenders in the first line of this file)
 log4j.appender.serverStats=org.apache.log4j.DailyRollingFileAppender
@@ -65,6 +79,10 @@ log4j.appender.serverStats.layout.OutputHeader=true
 log4j.appender.serverStats.layout.QuoteFields=false
 log4j.appender.serverStats.layout.Delimeter=tab
 log4j.appender.serverStats.layout.EventInclude=destroy
+<% if @enable_logrotation == true -%>
+log4j.appender.serverStats.MaxFileSize=<%= @log_max_file_size %>
+log4j.appender.serverStats.MaxBackupIndex=<%= @log_max_backup_index %>
+<% end -%>
 
 # Below are logging definitions for dynamic log file generation on a per application basis.
 # To use these logging appender, uncomment each of the lines below. It will generate log files
@@ -85,6 +103,10 @@ log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Applicatio
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_access.layout.OutputHeader=true
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_access.layout.QuoteFields=false
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_access.layout.Delimeter=tab
+<% if @enable_logrotation == true -%>
+log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_access.MaxFileSize=<%= @log_max_file_size %>
+log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_access.MaxBackupIndex=<%= @log_max_backup_index %>
+<% end -%>
 
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error.DatePattern='.'yyyy-MM-dd
@@ -95,6 +117,10 @@ log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Applicatio
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error.layout.QuoteFields=false
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error.layout.Delimeter=tab
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error.Threshold=WARN
+<% if @enable_logrotation == true -%>
+log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error.MaxFileSize=<%= @log_max_file_size %>
+log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_error.MaxBackupIndex=<%= @log_max_backup_index %>
+<% end -%>
 
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats.DatePattern='.'yyyy-MM-dd
@@ -105,6 +131,10 @@ log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Applicatio
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats.layout.QuoteFields=false
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats.layout.Delimeter=tab
 log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats.layout.EventInclude=destroy
+<% if @enable_logrotation == true -%>
+log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats.MaxFileSize=<%= @log_max_file_size %>
+log4j.appender.${com.wowza.wms.context.VHost}_${com.wowza.wms.context.Application}_stats.MaxBackupIndex=<%= @log_max_backup_index %>
+<% end -%>
 #### APPLICATION LEVEL LOGGING CONFIG - STOP ####
 
 
