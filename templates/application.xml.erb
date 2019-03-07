@@ -88,10 +88,12 @@
     	</TimedText>
 
 		<!-- HTTPStreamers (separate with commas): cupertinostreaming, smoothstreaming, sanjosestreaming, dvrchunkstreaming -->
-		<HTTPStreamers>cupertinostreaming,smoothstreaming,sanjosestreaming,mpegdashstreaming</HTTPStreamers>
+    <HTTPStreamers>cupertinostreaming,smoothstreaming,sanjosestreaming,mpegdashstreaming</HTTPStreamers>
+    <% if @mediacache_source -%>
 		<MediaCache>
-            <MediaCacheSourceList></MediaCacheSourceList>
-    	</MediaCache>
+      <MediaCacheSourceList><%= @mediacache_source %></MediaCacheSourceList>
+    </MediaCache>
+    <% end -%>
 		<SharedObjects>
 			<StorageDir>${com.wowza.wms.context.VHostConfigHome}/applications/${com.wowza.wms.context.Application}/sharedobjects/${com.wowza.wms.context.ApplicationInstance}</StorageDir>
 		</SharedObjects>
@@ -161,7 +163,19 @@
 		</MediaCaster>
 		<MediaReader>
 			<!-- Properties defined here will override any properties defined in conf/MediaReaders.xml for any MediaReaders loaded by this applications -->
-			<Properties>
+      <Properties>
+        <% if @mediacache_source -%>
+          <Property>
+            <Name>randomAccessReaderClass</Name>
+            <Value>com.wowza.wms.mediacache.impl.MediaCacheRandomAccessReaderVODEdge</Value>
+            <Type>String</Type>
+          </Property>
+          <Property>
+            <Name>bufferSeekIO</Name>
+            <Value>true</Value>
+            <Type>Boolean</Type>
+          </Property>
+        <% end -%>
 			</Properties>
 		</MediaReader>
 		<MediaWriter>

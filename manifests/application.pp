@@ -69,7 +69,9 @@
 #    empty password file is created ) a symlink is created to the path provided
 #    in this parameter.
 #
-
+#  [*mediacache_source*]
+#    MediaCache source name to use for this application.
+#
 define wowza::application (
   $ensure                 = present,
   $appdescription         = 'live stream application',
@@ -88,7 +90,8 @@ define wowza::application (
   $target_password_file   = undef,
   $shared_token           = false,
   $publish_whitelist      = false,
-  $maximum_connections     = false,
+  $maximum_connections    = false,
+  $mediacache_source      = undef,
 ) {
 
   $dir_ensure = $ensure ? {
