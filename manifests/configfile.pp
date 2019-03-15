@@ -21,14 +21,6 @@ define wowza::configfile (
   $content = '',
   $source  = '') {
 
-  if($content == '') and ($source == '') {
-    fail('wowza::configfile must set content or source')
-  }
-
-  if($content != '') and ($source != '') {
-    fail('wowza::configfile must set content or source')
-  }
-
   if($content != '')
   {
     file {
